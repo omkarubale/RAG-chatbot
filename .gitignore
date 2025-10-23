@@ -4,3 +4,37 @@
 
 # LangGraph
 .langgraph_api/
+
+venv/
+env/
+.venv/
+
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+.spyderproject
+.spyproject
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Sensitive information
+.env
+local_settings.py
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
