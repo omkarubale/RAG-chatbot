@@ -34,6 +34,7 @@ htmlcov/
 # Sensitive information
 .env
 local_settings.py
+/.streamlit/secrets.toml
 
 # OS specific files
 .DS_Store
