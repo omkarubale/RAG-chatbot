@@ -60,7 +60,7 @@ class Chain:
     def getChain(self) -> ConversationalRetrievalChain:
         return self.chain
 
-    def prompt(self, question: str, chat_history: List[str]) -> str:
+    def prompt(self, question: str, chat_history: List[str]) -> dict:
         result = self.chain({"question": question, "chat_history": chat_history})
         chat_history.append((question, result["answer"]))
 

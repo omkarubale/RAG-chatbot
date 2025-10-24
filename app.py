@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 
 from src.chain import Chain
@@ -20,6 +21,9 @@ URLS = [
 
 @st.cache_resource(show_spinner=True)
 def initChain():
+    # disable tokenizer parallelism as we are running on streamlit
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
     ingestor = Ingestor()
 
     ingestor.addDocuments("data/Everstorm_*.pdf")
