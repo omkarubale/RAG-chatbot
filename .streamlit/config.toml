@@ -1,0 +1,11 @@
+[server]
+runOnSave = false
+fileWatcherType = "poll"
+folderWatchBlacklist = [
+    ".venv/*",
+    ".venv/**",
+    "__pycache__/*",
+    "__pycache__/**",
+    "venv/*",
+    "venv/**"
+]

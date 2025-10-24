@@ -1,13 +1,15 @@
 import os
+
+# disable run on save to stop streamlit watcher from traversing pytorch files
+os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
+# disable tokenizer parallelism as we are running on streamlit
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+os.environ["USER_AGENT"] = "Om-RAG-Chatbot/0.1"
 import streamlit as st
 
 from src.chain import Chain
 from src.chunker import Chunker
 from src.ingestor import Ingestor
-
-from dotenv import load_dotenv
-
-load_dotenv()
 
 st.set_page_config(page_title="Customer Support Chatbot")
 st.title("Customer Support Chatbot")
@@ -21,9 +23,6 @@ URLS = [
 
 @st.cache_resource(show_spinner=True)
 def initChain():
-    # disable tokenizer parallelism as we are running on streamlit
-    os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
     ingestor = Ingestor()
 
     ingestor.addDocuments("data/Everstorm_*.pdf")
