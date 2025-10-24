@@ -1,5 +1,7 @@
 # 🧠 Customer Support Chatbot (RAG + Streamlit + Groq)
 
+Hosted Url: https://omkarubale-rag-chatbot.streamlit.app/
+
 A **Retrieval-Augmented Generation (RAG)** chatbot built with **LangChain**, **Groq LLMs**, and **Streamlit**.  
 It answers customer support questions using **Everstorm PDFs** and **BigCommerce developer docs** as its source of truth to reduce hallucinations and guesswork.
 
