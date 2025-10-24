@@ -10,9 +10,19 @@ from langchain_community.document_loaders import (
 class Ingestor:
     def __init__(self):
         self.raw_docs = []
+        self.source_pdfs = []
+        self.source_urls = []
+        self.source_texts = []
 
     def getRawDocs(self):
         return self.raw_docs
+
+    def getSources(self):
+        return {
+            "pdfs": self.source_pdfs,
+            "urls": self.source_urls,
+            "texts": self.source_texts,
+        }
 
     def addDocuments(self, files_path: str) -> bool:
         try:
@@ -21,6 +31,8 @@ class Ingestor:
 
             for file_path in pdf_paths:
                 docs.extend(PyPDFLoader(file_path).load())
+                self.source_pdfs.append(file_path)
+
             self.raw_docs.extend(docs)
 
             print(
@@ -43,6 +55,11 @@ class Ingestor:
             docs = loader.load()
             self.raw_docs.extend(docs)
 
+            for d in docs:
+                src = d.metadata.get("source", None)
+                if src and src not in self.source_texts:
+                    self.source_texts.append(src)
+
             print(
                 f"Ingestor: Loaded {len(docs)} PDF pages from {files_path} path matching {pattern}."
             )
@@ -55,6 +72,8 @@ class Ingestor:
         try:
             docs = WebBaseLoader([url]).load()
             self.raw_docs.extend(docs)
+
+            self.source_urls.append(url)
 
             print(
                 f"Ingestor: Loaded {len(docs)} documents from webpage contents {url}."
