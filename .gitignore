@@ -5,6 +5,10 @@
 # LangGraph
 .langgraph_api/
 
+# FAISS
+/faiss_index/*
+
+# Python virtual environments
 venv/
 env/
 .venv/
