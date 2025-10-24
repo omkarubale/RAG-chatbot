@@ -61,7 +61,7 @@ class Chain:
         return self.chain
 
     def prompt(self, question: str, chat_history: List[str]) -> dict:
-        result = self.chain({"question": question, "chat_history": chat_history})
+        result = self.chain.invoke({"question": question, "chat_history": chat_history})
         chat_history.append((question, result["answer"]))
 
         return result
